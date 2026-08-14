@@ -70,7 +70,16 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   display: flex; align-items: center; justify-content: space-between;
   min-height: 66px; gap: 20px;
 }
-.brand { font-weight: 700; font-size: 18px; letter-spacing: -.01em; }
+.brand {
+  font-weight: 700; font-size: 18px; letter-spacing: -.01em;
+  display: inline-flex; align-items: baseline; gap: 9px;
+}
+.brand-en {
+  font-size: 11px; font-weight: 600; letter-spacing: .18em;
+  color: var(--ink-soft);
+}
+@media (max-width: 400px) { .brand-en { display: none; } }
+.footer-en { letter-spacing: .12em; font-size: 12px; opacity: .7; }
 .nav { display: flex; gap: 26px; font-size: 15px; color: var(--ink-soft); }
 .nav a { position: relative; padding: 4px 0; transition: color .18s; }
 .nav a:hover { color: var(--ink); }
@@ -159,26 +168,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .about-text { font-size: clamp(17px, 2.2vw, 20px); color: var(--ink-soft); max-width: 62ch; }
 @media (min-width: 900px) {
   .about-inner { grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start; }
-}
-
-/* ---------- 가격 안내 ---------- */
-.cards { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); }
-.svc {
-  border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 32px 28px; background: var(--paper);
-  display: flex; flex-direction: column; gap: 14px;
-  transition: box-shadow .2s, transform .2s;
-}
-.svc:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
-.svc h3 { font-size: 21px; }
-.svc .price { color: var(--accent); font-weight: 700; font-size: 17px; }
-.svc .desc { color: var(--ink-soft); font-size: 15.5px; }
-.svc ul { display: grid; gap: 9px; margin-top: 4px; font-size: 15px; color: var(--ink-soft); }
-.svc li { padding-left: 22px; position: relative; }
-.svc li::before {
-  content: ""; position: absolute; left: 2px; top: 10px;
-  width: 9px; height: 5px; border-left: 2px solid var(--accent);
-  border-bottom: 2px solid var(--accent); transform: rotate(-45deg);
 }
 
 /* ---------- 작업 과정 ---------- */

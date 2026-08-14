@@ -26,7 +26,8 @@
 
   /* ---------- 1. 기본 문구 채우기 ---------- */
   $$("[data-brand]").forEach(function (el) { el.textContent = SITE.brandName; });
-  document.title = SITE.brandName + " · 로고 · 명함 디자인";
+  $$("[data-brand-en]").forEach(function (el) { el.textContent = SITE.brandNameEn || ""; });
+  document.title = SITE.brandName + " | 로고 · 명함 디자인";
 
   var titleEl = $("[data-hero-title]");
   if (titleEl) {
@@ -97,35 +98,7 @@
   if (c.email) addContact(c.email, "mailto:" + c.email);
   if (c.hours) addContact(c.hours);
 
-  /* ---------- 5. 가격 안내 ---------- */
-  var svcBox = $("#services-list");
-  (SITE.services || []).forEach(function (s) {
-    var card = document.createElement("article");
-    card.className = "svc";
-
-    var h3 = document.createElement("h3");
-    h3.textContent = s.title;
-
-    var price = document.createElement("p");
-    price.className = "price";
-    price.textContent = s.price;
-
-    var desc = document.createElement("p");
-    desc.className = "desc";
-    desc.textContent = s.desc;
-
-    var ul = document.createElement("ul");
-    (s.items || []).forEach(function (item) {
-      var li = document.createElement("li");
-      li.textContent = item;
-      ul.appendChild(li);
-    });
-
-    card.append(h3, price, desc, ul);
-    svcBox.appendChild(card);
-  });
-
-  /* ---------- 6. 작업 과정 ---------- */
+  /* ---------- 5. 작업 과정 ---------- */
   var procBox = $("#process-list");
   (SITE.process || []).forEach(function (p) {
     var li = document.createElement("li");
@@ -140,7 +113,7 @@
     procBox.appendChild(li);
   });
 
-  /* ---------- 7. 포트폴리오 ---------- */
+  /* ---------- 6. 포트폴리오 ---------- */
   var gallery = $("#gallery");
   var emptyMsg = $("#galleryEmpty");
   var items = Array.isArray(PORTFOLIO) ? PORTFOLIO : [];
@@ -201,7 +174,7 @@
     strip.appendChild(img);
   });
 
-  /* ---------- 8. 사진 크게 보기 ---------- */
+  /* ---------- 7. 사진 크게 보기 ---------- */
   var lb = $("#lightbox");
   var lbImage = $("#lbImage");
   var lbTitle = $("#lbTitle");
