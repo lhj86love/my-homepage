@@ -50,33 +50,38 @@
     }
   });
 
-  /* ---------- 3. 채널 버튼 ----------
+  /* ---------- 3. 인스타 · 숨고 · 크몽 · 스레드 버튼 ----------
      주소를 하나라도 넣으면 → 주소가 있는 버튼만 보입니다.
      아직 하나도 안 넣었으면 → 미리보기용으로 흐린 버튼이 보입니다. */
-  var channelBox = $("#channels");
   var anyChannel = CHANNEL_META.some(function (ch) { return links[ch.key]; });
 
-  CHANNEL_META.forEach(function (ch) {
-    var url = links[ch.key];
-    if (anyChannel && !url) return;
+  function buildChannels(box) {
+    if (!box) return;
+    CHANNEL_META.forEach(function (ch) {
+      var url = links[ch.key];
+      if (anyChannel && !url) return;
 
-    var el = document.createElement(url ? "a" : "span");
-    el.className = "channel" + (url ? "" : " is-placeholder");
-    if (url) {
-      el.href = url;
-      el.target = "_blank";
-      el.rel = "noopener noreferrer";
-    }
-    el.innerHTML = ICONS[ch.key];
-    el.appendChild(document.createTextNode(ch.label));
-    channelBox.appendChild(el);
-  });
+      var el = document.createElement(url ? "a" : "span");
+      el.className = "channel" + (url ? "" : " is-placeholder");
+      if (url) {
+        el.href = url;
+        el.target = "_blank";
+        el.rel = "noopener noreferrer";
+      }
+      el.innerHTML = ICONS[ch.key];
+      el.appendChild(document.createTextNode(ch.label));
+      box.appendChild(el);
+    });
+  }
+
+  buildChannels($("#heroChannels"));   // 첫 화면, 카카오톡 버튼 옆
+  buildChannels($("#channels"));       // 맨 아래 문의 섹션
 
   if (!anyChannel) {
     var hint = document.createElement("p");
     hint.className = "channels-hint";
     hint.textContent = "config.js 파일에 주소를 넣으면 눌리는 버튼으로 바뀝니다.";
-    channelBox.parentNode.appendChild(hint);
+    $("#channels").parentNode.appendChild(hint);
   }
 
   /* ---------- 4. 연락처 ---------- */
@@ -98,73 +103,44 @@
   if (c.email) addContact(c.email, "mailto:" + c.email);
   if (c.hours) addContact(c.hours);
 
-  /* ---------- 5. 작업 과정 ---------- */
-  var procBox = $("#process-list");
-  (SITE.process || []).forEach(function (p) {
-    var li = document.createElement("li");
-    var num = document.createElement("span");
-    num.className = "num";
-    num.textContent = p.step;
-    var h3 = document.createElement("h3");
-    h3.textContent = p.title;
-    var desc = document.createElement("p");
-    desc.textContent = p.desc;
-    li.append(num, h3, desc);
-    procBox.appendChild(li);
-  });
-
-  /* ---------- 6. 포트폴리오 ---------- */
+  /* ---------- 5. 포트폴리오 ----------
+     config.js 의 PORTFOLIO 에 적은 순서 그대로, 전부 화면에 나옵니다.
+     아래로 계속 추가하면 화면에서도 아래로 계속 이어집니다. */
   var gallery = $("#gallery");
   var emptyMsg = $("#galleryEmpty");
   var items = Array.isArray(PORTFOLIO) ? PORTFOLIO : [];
-  var visible = items.slice();
 
-  function render(filter) {
-    visible = filter === "all" ? items.slice() : items.filter(function (it) { return it.category === filter; });
-    gallery.textContent = "";
+  items.forEach(function (it, index) {
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "card-item";
+    btn.setAttribute("aria-label", it.title + " 크게 보기");
 
-    visible.forEach(function (it, index) {
-      var btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "card-item";
-      btn.setAttribute("aria-label", it.title + " 크게 보기");
+    var thumb = document.createElement("div");
+    thumb.className = "thumb";
+    var img = document.createElement("img");
+    img.src = it.image;
+    img.alt = it.title;
+    img.loading = "lazy";
+    img.decoding = "async";
+    thumb.appendChild(img);
 
-      var thumb = document.createElement("div");
-      thumb.className = "thumb";
-      var img = document.createElement("img");
-      img.src = it.image;
-      img.alt = it.title;
-      img.loading = "lazy";
-      img.decoding = "async";
-      thumb.appendChild(img);
+    var meta = document.createElement("div");
+    meta.className = "meta";
+    var strong = document.createElement("strong");
+    strong.textContent = it.title;
+    var span = document.createElement("span");
+    span.textContent = it.desc || "";
+    meta.append(strong, span);
 
-      var meta = document.createElement("div");
-      meta.className = "meta";
-      var strong = document.createElement("strong");
-      strong.textContent = it.title;
-      var span = document.createElement("span");
-      span.textContent = it.desc || "";
-      meta.append(strong, span);
-
-      btn.append(thumb, meta);
-      btn.addEventListener("click", function () { openLightbox(index); });
-      gallery.appendChild(btn);
-    });
-
-    emptyMsg.hidden = visible.length > 0;
-  }
-
-  $$(".filter").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      $$(".filter").forEach(function (b) { b.classList.remove("is-active"); });
-      btn.classList.add("is-active");
-      render(btn.dataset.filter);
-    });
+    btn.append(thumb, meta);
+    btn.addEventListener("click", function () { openLightbox(index); });
+    gallery.appendChild(btn);
   });
 
-  render("all");
+  emptyMsg.hidden = items.length > 0;
 
-  /* ---------- 7. 사진 크게 보기 ---------- */
+  /* ---------- 6. 사진 크게 보기 ---------- */
   var lb = $("#lightbox");
   var lbImage = $("#lbImage");
   var lbTitle = $("#lbTitle");
@@ -173,9 +149,9 @@
   var lastFocused = null;
 
   function show(i) {
-    if (!visible.length) return;
-    current = (i + visible.length) % visible.length;
-    var it = visible[current];
+    if (!items.length) return;
+    current = (i + items.length) % items.length;
+    var it = items[current];
     lbImage.src = it.image;
     lbImage.alt = it.title;
     lbTitle.textContent = it.title;

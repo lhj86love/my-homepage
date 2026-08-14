@@ -32,32 +32,30 @@ const SITE = {
     hours: "평일 10:00 – 19:00 · 주말·공휴일 휴무",
   },
 
-  /* ---------- 4. 작업 과정 ---------- */
-  process: [
-    { step: "01", title: "상담", desc: "카카오톡으로 하시는 일과 원하시는 느낌을 알려주세요." },
-    { step: "02", title: "시안 제안", desc: "3~5일 내에 방향이 다른 시안을 보내드립니다." },
-    { step: "03", title: "수정", desc: "고르신 시안을 마음에 드실 때까지 다듬습니다." },
-    { step: "04", title: "파일 전달", desc: "인쇄용·웹용 파일을 한 번에 정리해 드립니다." },
-  ],
 };
 
 /* ============================================================
-   5. 포트폴리오 목록
+   4. 포트폴리오 목록
 
    ★ 새 작업물 올리는 방법 (2단계) ★
    (1) 사진 파일을 images/portfolio/ 폴더에 넣습니다.
-   (2) 아래 목록 맨 위에 한 줄을 복사해서 붙여넣고 내용만 바꿉니다.
+   (2) 아래 목록 맨 아래 ★ 표시 자리에 한 줄을 복사해서 붙여넣고 내용만 바꿉니다.
 
-   category 는 "logo"(로고) 또는 "card"(명함) 중 하나로 적어주세요.
+   여기에 적는 순서 그대로 화면에 나옵니다.
+   맨 아래에 추가하면 홈페이지에서도 맨 아래에 이어서 붙습니다.
+   몇 개를 넣든 전부 다 보입니다. ("더보기"로 숨기지 않습니다)
    ============================================================ */
 
 const PORTFOLIO = [
-  { image: "images/portfolio/logo-01.svg", title: "메리디안 커피", category: "logo", desc: "카페 · 2025" },
-  { image: "images/portfolio/card-01.svg", title: "블랙 골드 명함", category: "card", desc: "컨설팅 · 2025" },
-  { image: "images/portfolio/logo-02.svg", title: "아우라 스튜디오", category: "logo", desc: "요가 스튜디오 · 2025" },
-  { image: "images/portfolio/card-02.svg", title: "미니멀 명함", category: "card", desc: "디자인 스튜디오 · 2024" },
-  { image: "images/portfolio/logo-03.svg", title: "노르딕 가구", category: "logo", desc: "가구 브랜드 · 2024" },
-  { image: "images/portfolio/card-03.svg", title: "딥그린 명함", category: "card", desc: "플라워샵 · 2024" },
-  { image: "images/portfolio/logo-04.svg", title: "블룸 플라워", category: "logo", desc: "꽃집 · 2024" },
-  { image: "images/portfolio/card-04.svg", title: "크래프트 명함", category: "card", desc: "공방 · 2024" },
+  { image: "images/portfolio/logo-01.svg", title: "메리디안 커피", desc: "카페 로고 · 2025" },
+  { image: "images/portfolio/card-01.svg", title: "블랙 골드 명함", desc: "컨설팅 명함 · 2025" },
+  { image: "images/portfolio/logo-02.svg", title: "아우라 스튜디오", desc: "요가 스튜디오 로고 · 2025" },
+  { image: "images/portfolio/card-02.svg", title: "미니멀 명함", desc: "디자인 스튜디오 명함 · 2024" },
+  { image: "images/portfolio/logo-03.svg", title: "노르딕 가구", desc: "가구 브랜드 로고 · 2024" },
+  { image: "images/portfolio/card-03.svg", title: "딥그린 명함", desc: "플라워샵 명함 · 2024" },
+  { image: "images/portfolio/logo-04.svg", title: "블룸 플라워", desc: "꽃집 로고 · 2024" },
+  { image: "images/portfolio/card-04.svg", title: "크래프트 명함", desc: "공방 명함 · 2024" },
+
+  /* ★ 새 작업물은 이 아래에 한 줄씩 추가하세요 ★ */
+
 ];
