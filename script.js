@@ -10,15 +10,11 @@
   /* ---------- 채널 아이콘 ---------- */
   var ICONS = {
     instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>',
-    threads:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M16.2 11.4c-.3-3-2.1-4.2-4.3-4.2-2.6 0-4.4 1.9-4.4 4.9 0 3.2 1.9 5.1 4.6 5.1 2.4 0 4-1.3 4.4-3.1.4-1.9-.9-3-2.8-3-1.4 0-2.4.7-2.4 1.7 0 .8.6 1.3 1.4 1.3 1.2 0 1.9-1 1.9-2.6"/><path d="M12 3.5c-5 0-8.5 3.2-8.5 8.5S7 20.5 12 20.5s8.5-3.2 8.5-8.5"/></svg>',
-    soomgo:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 10.5 12 3.8l8.5 6.7"/><path d="M5.6 12v7.2h12.8V12"/><path d="M9.8 19.2v-4.4h4.4v4.4"/></svg>',
-    kmong:     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 8.2 12 4l7.5 4.2v7.6L12 20l-7.5-4.2z"/><path d="M12 12l7.5-3.8M12 12v8M12 12 4.5 8.2"/></svg>'
+    threads:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M16.2 11.4c-.3-3-2.1-4.2-4.3-4.2-2.6 0-4.4 1.9-4.4 4.9 0 3.2 1.9 5.1 4.6 5.1 2.4 0 4-1.3 4.4-3.1.4-1.9-.9-3-2.8-3-1.4 0-2.4.7-2.4 1.7 0 .8.6 1.3 1.4 1.3 1.2 0 1.9-1 1.9-2.6"/><path d="M12 3.5c-5 0-8.5 3.2-8.5 8.5S7 20.5 12 20.5s8.5-3.2 8.5-8.5"/></svg>'
   };
 
   var CHANNEL_META = [
     { key: "instagram", label: "인스타그램" },
-    { key: "soomgo",    label: "숨고" },
-    { key: "kmong",     label: "크몽" },
     { key: "threads",   label: "스레드" }
   ];
 
@@ -184,5 +180,121 @@
     if (e.key === "Escape") closeLightbox();
     if (e.key === "ArrowLeft") show(current - 1);
     if (e.key === "ArrowRight") show(current + 1);
+  });
+
+  /* ---------- 7. 의뢰 요청서 ----------
+     config.js 의 formEndpoint 로 내용을 보냅니다.
+     주소가 비어 있으면 "준비 중" 안내를 보여주고 전송 버튼을 잠급니다. */
+  var form = $("#requestForm");
+  var statusBox = $("#formStatus");
+  var noteBox = $("#formNote");
+  var submitBtn = $("#submitBtn");
+  var endpoint = (SITE.formEndpoint || "").trim();
+
+  function setStatus(kind, html) {
+    statusBox.className = "form-status" + (kind ? " is-" + kind : "");
+    statusBox.innerHTML = html;
+    statusBox.hidden = false;
+  }
+
+  function kakaoFallback() {
+    return links.kakao
+      ? ' 번거로우시겠지만 <a href="' + links.kakao + '" target="_blank" rel="noopener noreferrer">카카오톡 채널</a>로 남겨주시면 바로 확인하겠습니다.'
+      : "";
+  }
+
+  /* 아직 주소를 안 넣었을 때 */
+  if (!endpoint) {
+    submitBtn.disabled = true;
+    noteBox.textContent = "요청서 접수 준비 중입니다.";
+    setStatus("", "아직 요청서를 받을 주소가 연결되지 않았습니다. " +
+      "config.js 의 formEndpoint 에 주소를 넣으면 바로 작동합니다." + kakaoFallback());
+  } else {
+    noteBox.textContent = "보통 하루 안에 답변드립니다.";
+  }
+
+  /* 빈칸 확인 — 브라우저 기본 경고 대신 한국어 안내를 직접 보여줍니다 */
+  function clearErrors() {
+    $$(".field.has-error", form).forEach(function (f) { f.classList.remove("has-error"); });
+    $$(".field-error", form).forEach(function (el) { el.remove(); });
+  }
+
+  /* focusEl = 커서를 옮길 칸, box = 빨간 안내문을 붙일 자리 */
+  function showError(focusEl, box, message) {
+    if (box.classList.contains("field")) box.classList.add("has-error");
+    var msg = document.createElement("p");
+    msg.className = "field-error";
+    msg.textContent = message;
+    box.appendChild(msg);
+    return focusEl;
+  }
+
+  function validate() {
+    clearErrors();
+    var problems = [];
+
+    function check(condition, focusEl, box, message) {
+      if (condition) problems.push(showError(focusEl, box, message));
+    }
+
+    var name = $("#f-name");
+    check(!name.value.trim(), name, name.closest(".field"),
+      "성함 또는 업체명을 적어주세요.");
+
+    var email = $("#f-email");
+    var mail = email.value.trim();
+    check(!mail, email, email.closest(".field"),
+      "답변을 받으실 이메일을 적어주세요.");
+    check(!!mail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail), email, email.closest(".field"),
+      "이메일 주소를 다시 확인해 주세요.");
+
+    var kinds = $$('input[name="의뢰종류"]', form);
+    check(!$('input[name="의뢰종류"]:checked', form), kinds[0], $(".choices", form).closest(".field"),
+      "무엇을 의뢰하실지 골라주세요.");
+
+    var agree = $("#f-agree");
+    check(!agree.checked, agree, agree.closest(".field"),
+      "연락처 사용에 동의해 주세요.");
+
+    return problems[0] || null;
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!endpoint) return;
+
+    var bad = validate();
+    if (bad) {
+      if (!statusBox.classList.contains("is-error")) statusBox.hidden = true;
+      bad.focus();
+      bad.scrollIntoView({ block: "center", behavior: "smooth" });
+      return;
+    }
+
+    statusBox.hidden = true;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "보내는 중…";
+
+    var data = new FormData(form);
+    data.append("보낸시각", new Date().toLocaleString("ko-KR"));
+
+    fetch(endpoint, { method: "POST", body: data })
+      .then(function (res) {
+        if (!res.ok) throw new Error("서버 응답 " + res.status);
+        return res.text();
+      })
+      .then(function () {
+        form.reset();
+        clearErrors();
+        setStatus("ok", "<strong>요청서를 보냈습니다.</strong> 적어주신 이메일로 하루 안에 답변드리겠습니다.");
+        statusBox.scrollIntoView({ block: "center", behavior: "smooth" });
+      })
+      .catch(function () {
+        setStatus("error", "<strong>전송에 실패했습니다.</strong> 잠시 후 다시 시도해 주세요." + kakaoFallback());
+      })
+      .finally(function () {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "요청서 보내기";
+      });
   });
 })();
