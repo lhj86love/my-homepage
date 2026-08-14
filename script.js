@@ -164,16 +164,6 @@
 
   render("all");
 
-  /* 첫 화면 아래 흐르는 사진 띠 */
-  var strip = $("[data-hero-strip]");
-  items.slice(0, 8).forEach(function (it) {
-    var img = document.createElement("img");
-    img.src = it.image;
-    img.alt = "";
-    img.loading = "lazy";
-    strip.appendChild(img);
-  });
-
   /* ---------- 7. 사진 크게 보기 ---------- */
   var lb = $("#lightbox");
   var lbImage = $("#lbImage");
