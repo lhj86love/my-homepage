@@ -26,10 +26,15 @@
       <span data-brand>이건웍스</span>
       <span class="brand-en" data-brand-en></span>
     </a>
-    <nav class="nav" aria-label="주요 메뉴">
+    <button class="nav-toggle" type="button" id="navToggle"
+            aria-label="메뉴 열기" aria-expanded="false" aria-controls="siteNav">
+      <span class="bars" aria-hidden="true"></span>
+    </button>
+
+    <nav class="nav" id="siteNav" aria-label="주요 메뉴">
       <a href="#portfolio">포트폴리오</a>
       <a href="#about">소개</a>
-      <a href="#request">의뢰 요청서</a>
+      <a href="#request" class="nav-cta">의뢰 요청서</a>
       <a href="#contact">문의</a>
     </nav>
   </div>
@@ -141,6 +146,12 @@
             <option value="30~50만원">30~50만원</option>
             <option value="50만원 이상">50만원 이상</option>
           </select>
+        </div>
+
+        <!-- 스팸 방지용 함정 칸. 사람 눈에는 보이지 않고, 자동 프로그램만 여기에 입력합니다. -->
+        <div class="trap" aria-hidden="true">
+          <label for="f-trap">이 칸은 비워두세요</label>
+          <input type="text" id="f-trap" name="비워두세요" tabindex="-1" autocomplete="off">
         </div>
 
         <div class="field">
