@@ -37,7 +37,42 @@
   $("[data-about-text]").textContent = SITE.aboutText;
   $("#year").textContent = new Date().getFullYear();
 
-  /* ---------- 2. 카카오톡 버튼 연결 ---------- */
+  /* ---------- 2. 폰에서 쓰는 상단 메뉴 ---------- */
+  var navToggle = $("#navToggle");
+  var siteNav = $("#siteNav");
+
+  function setNav(open) {
+    siteNav.classList.toggle("is-open", open);
+    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    navToggle.setAttribute("aria-label", open ? "메뉴 닫기" : "메뉴 열기");
+  }
+
+  navToggle.addEventListener("click", function () {
+    setNav(navToggle.getAttribute("aria-expanded") !== "true");
+  });
+
+  /* 메뉴에서 항목을 고르면 저절로 닫힙니다 */
+  $$("a", siteNav).forEach(function (a) {
+    a.addEventListener("click", function () { setNav(false); });
+  });
+
+  /* 바깥을 누르거나 ESC 를 누르면 닫힙니다 */
+  document.addEventListener("click", function (e) {
+    if (!siteNav.contains(e.target) && !navToggle.contains(e.target)) setNav(false);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && siteNav.classList.contains("is-open")) {
+      setNav(false);
+      navToggle.focus();
+    }
+  });
+
+  /* 화면이 넓어지면 열려 있던 메뉴를 정리합니다 */
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 720) setNav(false);
+  });
+
+  /* ---------- 3. 카카오톡 버튼 연결 ---------- */
   $$("[data-kakao-cta]").forEach(function (el) {
     if (links.kakao) {
       el.href = links.kakao;
@@ -46,7 +81,7 @@
     }
   });
 
-  /* ---------- 3. 인스타 · 숨고 · 크몽 · 스레드 버튼 ----------
+  /* ---------- 4. 인스타 · 숨고 · 크몽 · 스레드 버튼 ----------
      주소를 하나라도 넣으면 → 주소가 있는 버튼만 보입니다.
      아직 하나도 안 넣었으면 → 미리보기용으로 흐린 버튼이 보입니다. */
   var anyChannel = CHANNEL_META.some(function (ch) { return links[ch.key]; });
@@ -80,7 +115,7 @@
     $("#channels").parentNode.appendChild(hint);
   }
 
-  /* ---------- 4. 연락처 ---------- */
+  /* ---------- 5. 연락처 ---------- */
   var contactBox = $("#contact-list");
   var c = SITE.contact || {};
   function addContact(text, href) {
@@ -99,7 +134,7 @@
   if (c.email) addContact(c.email, "mailto:" + c.email);
   if (c.hours) addContact(c.hours);
 
-  /* ---------- 5. 포트폴리오 ----------
+  /* ---------- 6. 포트폴리오 ----------
      config.js 의 PORTFOLIO 에 적은 순서 그대로, 전부 화면에 나옵니다.
      아래로 계속 추가하면 화면에서도 아래로 계속 이어집니다. */
   var gallery = $("#gallery");
@@ -136,7 +171,7 @@
 
   emptyMsg.hidden = items.length > 0;
 
-  /* ---------- 6. 사진 크게 보기 ---------- */
+  /* ---------- 7. 사진 크게 보기 ---------- */
   var lb = $("#lightbox");
   var lbImage = $("#lbImage");
   var lbTitle = $("#lbTitle");
@@ -182,7 +217,7 @@
     if (e.key === "ArrowRight") show(current + 1);
   });
 
-  /* ---------- 7. 의뢰 요청서 ----------
+  /* ---------- 8. 의뢰 요청서 ----------
      config.js 의 formEndpoint 로 내용을 보냅니다.
      주소가 비어 있으면 "준비 중" 안내를 보여주고 전송 버튼을 잠급니다. */
   var form = $("#requestForm");
@@ -190,6 +225,7 @@
   var noteBox = $("#formNote");
   var submitBtn = $("#submitBtn");
   var endpoint = (SITE.formEndpoint || "").trim();
+  var openedAt = Date.now();   /* 스팸 판별용 — 사람은 폼을 3초 안에 못 채웁니다 */
 
   function setStatus(kind, html) {
     statusBox.className = "form-status" + (kind ? " is-" + kind : "");
@@ -262,6 +298,19 @@
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     if (!endpoint) return;
+
+    /* 스팸 거르기 —
+       (1) 사람 눈에 안 보이는 함정 칸이 채워졌거나
+       (2) 페이지를 연 지 3초도 안 돼서 제출됐으면 자동 프로그램으로 봅니다.
+       보낸 쪽에는 성공한 것처럼 보이게 두고, 실제로는 전송하지 않습니다. */
+    var trap = $("#f-trap");
+    var tooFast = Date.now() - openedAt < 3000;
+    if ((trap && trap.value) || tooFast) {
+      form.reset();
+      clearErrors();
+      setStatus("ok", "<strong>요청서를 보냈습니다.</strong> 적어주신 이메일로 하루 안에 답변드리겠습니다.");
+      return;
+    }
 
     var bad = validate();
     if (bad) {

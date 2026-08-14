@@ -83,7 +83,52 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .nav { display: flex; gap: 26px; font-size: 15px; color: var(--ink-soft); }
 .nav a { position: relative; padding: 4px 0; transition: color .18s; }
 .nav a:hover { color: var(--ink); }
-@media (max-width: 720px) { .nav { display: none; } }
+
+/* 폰에서 메뉴 여닫는 버튼 — 넓은 화면에서는 숨깁니다 */
+.nav-toggle { display: none; }
+
+@media (max-width: 720px) {
+  .nav-toggle {
+    display: grid; place-items: center;
+    width: 44px; height: 44px; margin-right: -10px;
+    background: none; border: 0; cursor: pointer; color: var(--ink);
+  }
+  .nav-toggle .bars,
+  .nav-toggle .bars::before,
+  .nav-toggle .bars::after {
+    display: block; width: 21px; height: 2px; border-radius: 2px;
+    background: currentColor; transition: transform .22s ease, opacity .18s ease;
+  }
+  .nav-toggle .bars { position: relative; }
+  .nav-toggle .bars::before,
+  .nav-toggle .bars::after { content: ""; position: absolute; left: 0; }
+  .nav-toggle .bars::before { top: -7px; }
+  .nav-toggle .bars::after  { top: 7px; }
+
+  .nav-toggle[aria-expanded="true"] .bars { background: transparent; }
+  .nav-toggle[aria-expanded="true"] .bars::before { top: 0; transform: rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .bars::after  { top: 0; transform: rotate(-45deg); }
+
+  .nav {
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+    box-shadow: 0 16px 30px -22px rgba(23, 23, 26, .4);
+    padding: 8px 0 14px;
+    display: none;
+  }
+  .nav.is-open { display: flex; }
+  .nav a {
+    padding: 14px 20px; font-size: 16.5px;
+    border-top: 1px solid var(--line);
+  }
+  .nav a:first-child { border-top: 0; }
+  .nav a.nav-cta {
+    margin: 12px 20px 4px; padding: 14px 20px;
+    border: 0; border-radius: 999px; text-align: center;
+    background: var(--ink); color: #fff; font-weight: 700;
+  }
+}
 
 /* ---------- 첫 화면 ---------- */
 .hero { padding: clamp(64px, 10vw, 116px) 0 clamp(20px, 4vw, 48px); }
@@ -200,6 +245,13 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   font-size: 15px; font-weight: 400; color: var(--ink-soft); cursor: pointer;
 }
 .agree input { width: 19px; height: 19px; margin: 3px 0 0; accent-color: var(--ink); flex: none; cursor: pointer; }
+
+/* 스팸 방지용 함정 칸 — 화면에서 완전히 밀어냅니다.
+   display:none 을 쓰지 않는 이유는, 그런 칸은 자동 프로그램이 건너뛰기 때문입니다. */
+.trap {
+  position: absolute; left: -9999px; top: auto;
+  width: 1px; height: 1px; overflow: hidden;
+}
 
 .form-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 20px; }
 .form-note { font-size: 14px; color: var(--ink-soft); }
