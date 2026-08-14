@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>이건웍스 | 로고 · 명함 디자인</title>
+<meta name="description" content="이건웍스(Leegun Works) 로고·명함 디자인 포트폴리오. 상담은 카카오톡으로 편하게 문의해 주세요.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="이건웍스 | 로고 · 명함 디자인">
+<meta property="og:description" content="브랜드의 첫인상을 로고와 명함으로 완성합니다.">
+<meta property="og:image" content="images/portfolio/logo-01.svg">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2317171a'/><circle cx='16' cy='16' r='7' fill='none' stroke='%23b08544' stroke-width='2.5'/></svg>">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#portfolio">본문으로 건너뛰기</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top">
+      <span data-brand>이건웍스</span>
+      <span class="brand-en" data-brand-en></span>
+    </a>
+    <nav class="nav" aria-label="주요 메뉴">
+      <a href="#portfolio">포트폴리오</a>
+      <a href="#about">소개</a>
+      <a href="#request">의뢰 요청서</a>
+      <a href="#contact">문의</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 첫 화면 -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <p class="eyebrow">LOGO &amp; BUSINESS CARD DESIGN</p>
+      <h1 data-hero-title>브랜드의 첫인상을<br>로고와 명함으로 완성합니다</h1>
+      <p class="hero-text" data-hero-text></p>
+      <div class="hero-actions">
+        <a class="btn btn-kakao" data-kakao-cta href="#contact">
+          <span class="kakao-icon" aria-hidden="true"></span>카카오톡 상담하기
+        </a>
+        <a class="btn btn-ink" href="#request">의뢰 요청서 작성</a>
+        <div class="channel-buttons" id="heroChannels"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 포트폴리오 -->
+  <section id="portfolio" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>포트폴리오</h2>
+        <p class="section-text">사진을 누르면 크게 볼 수 있습니다.</p>
+      </div>
+
+      <div class="grid" id="gallery"></div>
+      <p class="empty" id="galleryEmpty" hidden>아직 등록된 작업물이 없습니다.</p>
+    </div>
+  </section>
+
+  <!-- 소개 -->
+  <section id="about" class="section section-alt">
+    <div class="wrap about-inner">
+      <div>
+        <p class="eyebrow">ABOUT</p>
+        <h2>오래 쓸 수 있는 디자인</h2>
+      </div>
+      <p class="about-text" data-about-text></p>
+    </div>
+  </section>
+
+  <!-- 의뢰 요청서 -->
+  <section id="request" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">REQUEST</p>
+        <h2>의뢰 요청서</h2>
+        <p class="section-text">
+          아래 내용을 적어 보내주시면 하루 안에 견적과 일정을 답변드립니다.
+          정확하지 않아도 괜찮으니 아는 만큼만 적어주세요.
+        </p>
+      </div>
+
+      <form class="req-form" id="requestForm" novalidate>
+        <div class="field">
+          <label for="f-name">성함 또는 업체명 <span class="req">필수</span></label>
+          <input type="text" id="f-name" name="성함" required autocomplete="name" placeholder="예: 이건웍스 / 홍길동">
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="f-email">이메일 <span class="req">필수</span></label>
+            <input type="email" id="f-email" name="이메일" required autocomplete="email" placeholder="예: hello@example.com">
+          </div>
+          <div class="field">
+            <label for="f-contact">전화번호 또는 카톡 ID</label>
+            <input type="text" id="f-contact" name="연락처" autocomplete="tel" placeholder="선택 입력">
+          </div>
+        </div>
+
+        <fieldset class="field">
+          <legend>무엇을 의뢰하시나요? <span class="req">필수</span></legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="의뢰종류" value="로고" required><span>로고</span></label>
+            <label class="choice"><input type="radio" name="의뢰종류" value="명함"><span>명함</span></label>
+            <label class="choice"><input type="radio" name="의뢰종류" value="로고+명함"><span>로고 + 명함</span></label>
+            <label class="choice"><input type="radio" name="의뢰종류" value="기타"><span>기타</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="f-biz">업종</label>
+            <input type="text" id="f-biz" name="업종" placeholder="예: 카페, 공방, 인테리어">
+          </div>
+          <div class="field">
+            <label for="f-when">희망 일정</label>
+            <select id="f-when" name="희망일정">
+              <option value="미정">아직 정하지 못했습니다</option>
+              <option value="1주 이내">급합니다 (1주 이내)</option>
+              <option value="2~3주">2~3주 정도</option>
+              <option value="한 달 이상">여유 있습니다 (한 달 이상)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-budget">생각하시는 예산</label>
+          <select id="f-budget" name="예산">
+            <option value="상담 후 결정">상담 후 결정하고 싶습니다</option>
+            <option value="10만원 이하">10만원 이하</option>
+            <option value="10~30만원">10~30만원</option>
+            <option value="30~50만원">30~50만원</option>
+            <option value="50만원 이상">50만원 이상</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="f-detail">원하시는 느낌이나 참고 자료</label>
+          <textarea id="f-detail" name="내용" rows="6"
+            placeholder="예) 20대 여성 손님이 많은 카페입니다. 따뜻하고 손그림 느낌이면 좋겠어요.&#10;참고하고 싶은 인스타 계정: @______"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="agree">
+            <input type="checkbox" id="f-agree" name="개인정보동의" value="동의" required>
+            <span>상담 답변을 위해 입력하신 연락처를 사용하는 데 동의합니다. <span class="req">필수</span></span>
+          </label>
+        </div>
+
+        <div class="form-foot">
+          <button type="submit" class="btn btn-ink btn-lg" id="submitBtn">요청서 보내기</button>
+          <p class="form-note" id="formNote"></p>
+        </div>
+
+        <p class="form-status" id="formStatus" role="status" aria-live="polite" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- 문의 -->
+  <section id="contact" class="section contact">
+    <div class="wrap contact-inner">
+      <p class="eyebrow">CONTACT</p>
+      <h2>편하게 물어보세요</h2>
+      <p class="section-text">간단한 문의도 괜찮습니다. 예산과 일정만 알려주시면 바로 안내드립니다.</p>
+
+      <a class="btn btn-kakao btn-lg" data-kakao-cta href="#contact">
+        <span class="kakao-icon" aria-hidden="true"></span>카카오톡으로 상담하기
+      </a>
+
+      <ul class="contact-list" id="contact-list"></ul>
+
+      <div class="channels">
+        <p class="channels-label">새 작업물은 여기에도 올립니다</p>
+        <div class="channel-buttons" id="channels"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span><span data-brand>이건웍스</span> <span class="footer-en" data-brand-en></span></span>
+    <span class="footer-copy">&copy; <span id="year"></span> All rights reserved.</span>
+  </div>
+</footer>
+
+<!-- 화면 아래 고정 카카오 버튼 -->
+<a class="kakao-float" data-kakao-cta href="#contact" aria-label="카카오톡 상담하기">
+  <span class="kakao-icon" aria-hidden="true"></span>
+  <span class="kakao-float-text">카카오톡 상담</span>
+</a>
+
+<!-- 사진 크게 보기 -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="작업물 크게 보기" hidden>
+  <button class="lb-close" type="button" aria-label="닫기">&times;</button>
+  <button class="lb-nav lb-prev" type="button" aria-label="이전 작업물">&#8249;</button>
+  <figure class="lb-figure">
+    <img id="lbImage" src="" alt="">
+    <figcaption><strong id="lbTitle"></strong><span id="lbDesc"></span></figcaption>
+  </figure>
+  <button class="lb-nav lb-next" type="button" aria-label="다음 작업물">&#8250;</button>
+</div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

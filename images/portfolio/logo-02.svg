@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="AURA 로고 예시 이미지">
+<rect width="600" height="600" fill="#f4f1ea"/>
+<path d="M238 295 A62 62 0 0 1 362 295" fill="none" stroke="#1f2933" stroke-width="12" stroke-linecap="round"/><circle cx="300" cy="300" r="9" fill="#1f2933"/>
+<text x="300" y="392" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="38" letter-spacing="10" fill="#1f2933">AURA</text>
+<text x="300" y="426" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="5" fill="#1f2933" opacity="0.6">SAMPLE IMAGE</text>
+</svg>

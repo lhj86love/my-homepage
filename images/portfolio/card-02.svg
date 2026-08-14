@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="명함 예시 이미지">
+<rect width="600" height="600" fill="#f6f4ef"/>
+<g transform="translate(90 195)">
+  <rect x="6" y="10" width="420" height="240" rx="10" fill="#1a1a1d" opacity="0.12"/>
+  <rect width="420" height="240" rx="10" fill="#f6f4ef" stroke="#1a1a1d" stroke-opacity="0.35"/>
+  <circle cx="52" cy="52" r="17" fill="none" stroke="#1a1a1d" stroke-width="4"/>
+  <text x="34" y="132" font-family="Helvetica, Arial, sans-serif" font-size="26" letter-spacing="4" fill="#1a1a1d">HONG GILDONG</text>
+  <text x="34" y="160" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="3" fill="#1a1a1d" opacity="0.65">BRAND DESIGNER</text>
+  <rect x="34" y="182" width="60" height="2" fill="#1a1a1d" opacity="0.4"/>
+  <text x="34" y="212" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#1a1a1d" opacity="0.55">010 0000 0000  ·  hello@studio.kr</text>
+</g>
+<text x="300" y="500" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="5" fill="#1a1a1d" opacity="0.5">SAMPLE IMAGE</text>
+</svg>
