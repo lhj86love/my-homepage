@@ -27,7 +27,7 @@ const SITE = {
      구글에서 만든 주소를 여기 붙여넣으면 요청서가 작동합니다.
      만드는 방법은 docs/의뢰요청서-설정법.md 에 그림처럼 순서대로 적어뒀습니다.
      비워두면 요청서 자리에 "준비 중" 안내가 나옵니다. */
-  formEndpoint: "",  // 예: "https://script.google.com/macros/s/AKfyc.../exec"
+  formEndpoint: "https://script.google.com/macros/s/AKfycbzfuerlfB5pggtKOLPWjDi5yCDV5Zp_X8emGFdMUUTw6sAlShMhQZsq6M5lEeUErupM/exec",  // 예: "https://script.google.com/macros/s/AKfyc.../exec"
 
   /* ---------- 4. 연락처 (안 쓰실 항목은 빈칸으로) ---------- */
   contact: {
