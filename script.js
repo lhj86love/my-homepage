@@ -135,7 +135,78 @@
   if (c.email) addContact(c.email, "mailto:" + c.email);
   if (c.hours) addContact(c.hours);
 
-  /* ---------- 6. 포트폴리오 ----------
+  /* ---------- 6. 가격표 ---------- */
+  var noteEl = $("[data-price-note]");
+  if (noteEl) noteEl.textContent = SITE.priceNote || "";
+
+  var svcBox = $("#services-list");
+  (SITE.services || []).forEach(function (s) {
+    var card = document.createElement("article");
+    card.className = "svc" + (s.best ? " is-best" : "");
+
+    if (s.best) {
+      var badge = document.createElement("span");
+      badge.className = "badge";
+      badge.textContent = "추천";
+      card.appendChild(badge);
+    }
+
+    var h3 = document.createElement("h3");
+    h3.textContent = s.title;
+
+    /* "18만원부터" → 숫자는 크게, "부터"는 작게 */
+    var price = document.createElement("p");
+    price.className = "price";
+    var m = String(s.price).match(/^(.*?)(부터)$/);
+    if (m) {
+      price.appendChild(document.createTextNode(m[1]));
+      var small = document.createElement("small");
+      small.textContent = m[2];
+      price.appendChild(small);
+    } else {
+      price.textContent = s.price;
+    }
+
+    var desc = document.createElement("p");
+    desc.className = "desc";
+    desc.textContent = s.desc;
+
+    var ul = document.createElement("ul");
+    (s.items || []).forEach(function (item) {
+      var li = document.createElement("li");
+      li.textContent = item;
+      ul.appendChild(li);
+    });
+
+    card.append(h3, price, desc, ul);
+    svcBox.appendChild(card);
+  });
+
+  /* 공통 포함 항목 */
+  var commonBox = $("#price-common");
+  (SITE.priceCommon || []).forEach(function (text) {
+    var li = document.createElement("li");
+    li.textContent = text;
+    commonBox.appendChild(li);
+  });
+  if (!commonBox.children.length) commonBox.closest(".price-common").hidden = true;
+
+  /* 추가 옵션 */
+  var optBox = $("#price-options");
+  (SITE.priceOptions || []).forEach(function (o) {
+    var li = document.createElement("li");
+    var name = document.createElement("span");
+    name.className = "opt-name";
+    name.textContent = o.name;
+    var price = document.createElement("span");
+    price.className = "opt-price";
+    price.textContent = o.price;
+    li.append(name, price);
+    optBox.appendChild(li);
+  });
+  if (!optBox.children.length) optBox.closest(".price-options").hidden = true;
+
+  /* ---------- 7. 포트폴리오 ----------
      config.js 의 PORTFOLIO 에 적은 순서 그대로, 전부 화면에 나옵니다.
      아래로 계속 추가하면 화면에서도 아래로 계속 이어집니다. */
   var gallery = $("#gallery");
@@ -172,7 +243,7 @@
 
   emptyMsg.hidden = items.length > 0;
 
-  /* ---------- 7. 사진 크게 보기 ---------- */
+  /* ---------- 8. 사진 크게 보기 ---------- */
   var lb = $("#lightbox");
   var lbImage = $("#lbImage");
   var lbTitle = $("#lbTitle");
@@ -218,7 +289,7 @@
     if (e.key === "ArrowRight") show(current + 1);
   });
 
-  /* ---------- 8. 의뢰 요청서 ----------
+  /* ---------- 9. 의뢰 요청서 ----------
      config.js 의 formEndpoint 로 내용을 보냅니다.
      주소가 비어 있으면 "준비 중" 안내를 보여주고 전송 버튼을 잠급니다. */
   var form = $("#requestForm");
