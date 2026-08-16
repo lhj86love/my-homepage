@@ -12,9 +12,10 @@ const SITE = {
   brandNameEn: "LEEGUN WORKS",          // 한글 이름 옆에 작게 나오는 영문 (필요 없으면 "")
   heroTitle: "브랜드의 첫인상을\n로고와 명함으로 완성합니다",  // \n 은 줄바꿈
   heroText: "작은 가게부터 1인 사업까지, 오래 쓸 수 있는 로고와 명함을 만듭니다.",
+  aboutTitle: "한 번 만들고 오래 쓰시라고",
   aboutText:
-    "10년 넘게 브랜드 디자인을 해왔습니다. 유행을 따라가기보다 " +
-    "사장님이 오래 들고 다닐 수 있는 디자인을 만드는 것을 가장 중요하게 생각합니다.",
+    "유행을 따라간 로고는 2년 뒤에 다시 만들게 됩니다. " +
+    "처음부터 오래 갈 것을 생각하고, 어디에 올려도 한 톤으로 이어지는 디자인을 만듭니다.",
 
   /* ---------- 2. 링크 (실제 주소를 그대로 붙여넣으세요) ---------- */
   links: {
@@ -52,25 +53,28 @@ const SITE = {
 
 const PORTFOLIO = [
   /* 1번째 줄 */
-  { image: "images/portfolio/donwoong-logo.jpg",    title: "Don.woong",        desc: "인플루언서 로고" },
-  { image: "images/portfolio/yulli-law-logo.jpg",   title: "율리 법무사무소",   desc: "법무사무소 로고" },
-  { image: "images/portfolio/quietvison-logo.jpg",  title: "QUIET VISON",      desc: "뷰티샵 로고" },
-  { image: "images/portfolio/nail-design-logo.jpg", title: "NAIL & DESIGN",    desc: "네일샵 로고" },
-  { image: "images/portfolio/browx-logo.jpg",       title: "BROW X",           desc: "브로우샵 로고" },
+  { image: "images/portfolio/donwoong-logo.jpg",    title: "Don.woong",        desc: "인플루언서" },
+  { image: "images/portfolio/yulli-law-logo.jpg",   title: "율리 법무사무소",   desc: "법무사무소" },
+  { image: "images/portfolio/quietvison-logo.jpg",  title: "QUIET VISON",      desc: "뷰티샵" },
+  { image: "images/portfolio/nail-design-logo.jpg", title: "NAIL & DESIGN",    desc: "네일샵" },
+  { image: "images/portfolio/browx-logo.jpg",       title: "BROW X",           desc: "브로우샵" },
 
   /* 2번째 줄 */
-  { image: "images/portfolio/seopro-logo.jpg",      title: "서프로 공인중개사", desc: "공인중개사 로고" },
-  { image: "images/portfolio/cafe-logo.jpg",        title: "카페 브랜드",       desc: "카페 로고" },
-  { image: "images/portfolio/pub-logo.jpg",         title: "주점 브랜드",       desc: "주점 로고" },
-  { image: "images/portfolio/nodam-labor-logo.jpg", title: "노담 노무사무소",   desc: "노무사무소 로고" },
-  { image: "images/portfolio/winebar-logo.jpg",     title: "와인바 브랜드",     desc: "와인바 로고" },
+  { image: "images/portfolio/seopro-logo.jpg",      title: "서프로 공인중개사", desc: "공인중개사" },
+  { image: "images/portfolio/cafe-logo.jpg",        title: "카페",             desc: "" },
+  { image: "images/portfolio/pub-logo.jpg",         title: "주점",             desc: "" },
+  { image: "images/portfolio/nodam-labor-logo.jpg", title: "노담 노무사무소",   desc: "노무사무소" },
+  { image: "images/portfolio/winebar-logo.jpg",     title: "와인바",           desc: "" },
 
   /* 3번째 줄 */
-  { image: "images/portfolio/djuny-card.jpg",       title: "D Juny",           desc: "로고 디자인" },
-  { image: "images/portfolio/djuny-tumbler.jpg",    title: "D Juny",           desc: "텀블러 각인" },
-  { image: "images/portfolio/lgw-card.jpg",         title: "LGW",              desc: "명함 디자인" },
+  { image: "images/portfolio/djuny-card.jpg",       title: "D Juny",           desc: "" },
+  { image: "images/portfolio/djuny-tumbler.jpg",    title: "D Juny",           desc: "" },
+  { image: "images/portfolio/lgw-card.jpg",         title: "LGW",              desc: "" },
 
   /* ★ 새 작업물은 이 아래에 한 줄씩 추가하세요 ★
-     한 줄에 5개씩 채워지고, 6번째부터 자동으로 아랫줄로 넘어갑니다. */
+     한 줄에 5개씩 채워지고, 6번째부터 자동으로 아랫줄로 넘어갑니다.
+
+     desc 에는 업종만 적습니다. (예: "카페", "네일샵")
+     로고·명함·굿즈를 따로 나누지 않고 한 목록에 이어서 올립니다. */
 
 ];
