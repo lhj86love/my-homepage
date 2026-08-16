@@ -51,15 +51,26 @@ const SITE = {
    ============================================================ */
 
 const PORTFOLIO = [
-  { image: "images/portfolio/logo-01.svg", title: "메리디안 커피", desc: "카페 로고 · 2025" },
-  { image: "images/portfolio/card-01.svg", title: "블랙 골드 명함", desc: "컨설팅 명함 · 2025" },
-  { image: "images/portfolio/logo-02.svg", title: "아우라 스튜디오", desc: "요가 스튜디오 로고 · 2025" },
-  { image: "images/portfolio/card-02.svg", title: "미니멀 명함", desc: "디자인 스튜디오 명함 · 2024" },
-  { image: "images/portfolio/logo-03.svg", title: "노르딕 가구", desc: "가구 브랜드 로고 · 2024" },
-  { image: "images/portfolio/card-03.svg", title: "딥그린 명함", desc: "플라워샵 명함 · 2024" },
-  { image: "images/portfolio/logo-04.svg", title: "블룸 플라워", desc: "꽃집 로고 · 2024" },
-  { image: "images/portfolio/card-04.svg", title: "크래프트 명함", desc: "공방 명함 · 2024" },
+  /* 1번째 줄 */
+  { image: "images/portfolio/donwoong-logo.jpg",    title: "Don.woong",        desc: "인플루언서 로고" },
+  { image: "images/portfolio/yulli-law-logo.jpg",   title: "율리 법무사무소",   desc: "법무사무소 로고" },
+  { image: "images/portfolio/quietvison-logo.jpg",  title: "QUIET VISON",      desc: "뷰티샵 로고" },
+  { image: "images/portfolio/nail-design-logo.jpg", title: "NAIL & DESIGN",    desc: "네일샵 로고" },
+  { image: "images/portfolio/browx-logo.jpg",       title: "BROW X",           desc: "브로우샵 로고" },
 
-  /* ★ 새 작업물은 이 아래에 한 줄씩 추가하세요 ★ */
+  /* 2번째 줄 */
+  { image: "images/portfolio/seopro-logo.jpg",      title: "서프로 공인중개사", desc: "공인중개사 로고" },
+  { image: "images/portfolio/cafe-logo.jpg",        title: "카페 브랜드",       desc: "카페 로고" },
+  { image: "images/portfolio/pub-logo.jpg",         title: "주점 브랜드",       desc: "주점 로고" },
+  { image: "images/portfolio/nodam-labor-logo.jpg", title: "노담 노무사무소",   desc: "노무사무소 로고" },
+  { image: "images/portfolio/winebar-logo.jpg",     title: "와인바 브랜드",     desc: "와인바 로고" },
+
+  /* 3번째 줄 */
+  { image: "images/portfolio/djuny-card.jpg",       title: "D Juny",           desc: "명함 디자인" },
+  { image: "images/portfolio/djuny-tumbler.jpg",    title: "D Juny",           desc: "텀블러 각인" },
+  { image: "images/portfolio/lgw-card.jpg",         title: "LGW",              desc: "명함 디자인" },
+
+  /* ★ 새 작업물은 이 아래에 한 줄씩 추가하세요 ★
+     한 줄에 5개씩 채워지고, 6번째부터 자동으로 아랫줄로 넘어갑니다. */
 
 ];

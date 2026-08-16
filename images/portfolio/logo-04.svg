@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="BLOOM 로고 예시 이미지">
-<rect width="600" height="600" fill="#e8e2d6"/>
-<path d="M300 190 C356 216 356 288 300 314 C244 288 244 216 300 190 Z" fill="none" stroke="#8c6d3f" stroke-width="10"/><path d="M300 200 L300 320" stroke="#8c6d3f" stroke-width="8" stroke-linecap="round"/>
-<text x="300" y="392" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="38" letter-spacing="10" fill="#8c6d3f">BLOOM</text>
-<text x="300" y="426" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="5" fill="#8c6d3f" opacity="0.6">SAMPLE IMAGE</text>
-</svg>
