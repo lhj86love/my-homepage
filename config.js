@@ -66,7 +66,7 @@ const PORTFOLIO = [
   { image: "images/portfolio/winebar-logo.jpg",     title: "와인바 브랜드",     desc: "와인바 로고" },
 
   /* 3번째 줄 */
-  { image: "images/portfolio/djuny-card.jpg",       title: "D Juny",           desc: "명함 디자인" },
+  { image: "images/portfolio/djuny-card.jpg",       title: "D Juny",           desc: "로고 디자인" },
   { image: "images/portfolio/djuny-tumbler.jpg",    title: "D Juny",           desc: "텀블러 각인" },
   { image: "images/portfolio/lgw-card.jpg",         title: "LGW",              desc: "명함 디자인" },
 
