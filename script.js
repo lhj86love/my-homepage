@@ -135,7 +135,40 @@
   if (c.email) addContact(c.email, "mailto:" + c.email);
   if (c.hours) addContact(c.hours);
 
-  /* ---------- 6. 가격표 ---------- */
+  /* ---------- 6. 후기 ----------
+     config.js 의 reviews 가 비어 있으면 영역 자체가 숨겨집니다. */
+  var reviews = SITE.reviews || [];
+  if (reviews.length) {
+    var reviewBox = $("#review-list");
+    reviews.forEach(function (r) {
+      var card = document.createElement("blockquote");
+      card.className = "review";
+      var text = document.createElement("p");
+      text.textContent = r.text;
+      var who = document.createElement("footer");
+      who.className = "who";
+      who.textContent = r.who || "";
+      card.append(text, who);
+      reviewBox.appendChild(card);
+    });
+    $("#reviews").hidden = false;
+  }
+
+  /* ---------- 7. 손님이 걱정하는 것 ---------- */
+  var worryBox = $("#worry-list");
+  (SITE.worries || []).forEach(function (w) {
+    var item = document.createElement("article");
+    item.className = "worry";
+    var q = document.createElement("h3");
+    q.textContent = w.q;
+    var a = document.createElement("p");
+    a.textContent = w.a;
+    item.append(q, a);
+    worryBox.appendChild(item);
+  });
+  if (!worryBox.children.length) $("#worries").hidden = true;
+
+  /* ---------- 8. 가격표 ---------- */
   var noteEl = $("[data-price-note]");
   if (noteEl) noteEl.textContent = SITE.priceNote || "";
 
@@ -212,7 +245,7 @@
     footEl.hidden = !SITE.priceFootnote;
   }
 
-  /* ---------- 7. 포트폴리오 ----------
+  /* ---------- 9. 포트폴리오 ----------
      config.js 의 PORTFOLIO 에 적은 순서 그대로, 전부 화면에 나옵니다.
      아래로 계속 추가하면 화면에서도 아래로 계속 이어집니다. */
   var gallery = $("#gallery");
@@ -249,7 +282,26 @@
 
   emptyMsg.hidden = items.length > 0;
 
-  /* ---------- 8. 사진 크게 보기 ---------- */
+  /* 다뤄본 업종을 한 줄로 모아 보여줍니다.
+     "내 업종 작업물이 있나"가 손님이 가장 먼저 확인하는 부분이기 때문입니다. */
+  var fieldsEl = $("#fields");
+  var fieldNames = [];
+  items.forEach(function (it) {
+    if (it.desc && fieldNames.indexOf(it.desc) === -1) fieldNames.push(it.desc);
+  });
+  if (fieldNames.length) {
+    fieldsEl.textContent = "지금까지 ";
+    fieldNames.forEach(function (name, i) {
+      if (i) fieldsEl.appendChild(document.createTextNode(" · "));
+      var b = document.createElement("b");
+      b.textContent = name;
+      fieldsEl.appendChild(b);
+    });
+    fieldsEl.appendChild(document.createTextNode(" 등의 로고와 명함을 만들었습니다."));
+    fieldsEl.hidden = false;
+  }
+
+  /* ---------- 10. 사진 크게 보기 ---------- */
   var lb = $("#lightbox");
   var lbImage = $("#lbImage");
   var lbTitle = $("#lbTitle");
@@ -295,7 +347,7 @@
     if (e.key === "ArrowRight") show(current + 1);
   });
 
-  /* ---------- 9. 의뢰 요청서 ----------
+  /* ---------- 11. 의뢰 요청서 ----------
      config.js 의 formEndpoint 로 내용을 보냅니다.
      주소가 비어 있으면 "준비 중" 안내를 보여주고 전송 버튼을 잠급니다. */
   var form = $("#requestForm");

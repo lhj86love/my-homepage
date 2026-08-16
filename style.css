@@ -192,6 +192,54 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .card-item .meta span { font-size: 14px; color: var(--ink-soft); }
 .empty { color: var(--ink-soft); padding: 40px 0; }
 
+/* ---------- 다뤄본 업종 한 줄 ---------- */
+.fields {
+  margin: -22px 0 30px; font-size: 15.5px; line-height: 1.9; color: var(--ink-soft);
+  max-width: 74ch;
+}
+.fields[hidden] { display: none; }
+.fields b { color: var(--ink); font-weight: 700; }
+
+/* ---------- 후기 ---------- */
+.review-grid {
+  display: grid; gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+.review {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 26px 26px 22px; display: flex; flex-direction: column; gap: 14px;
+}
+.review p { font-size: 16.5px; line-height: 1.7; }
+.review p::before { content: "“"; color: var(--accent); font-weight: 800; margin-right: 2px; }
+.review p::after  { content: "”"; color: var(--accent); font-weight: 800; margin-left: 2px; }
+.review .who { margin-top: auto; font-size: 14.5px; color: var(--ink-soft); }
+
+/* ---------- 손님이 걱정하는 것 ---------- */
+.worry-grid {
+  display: grid; gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+}
+.worry {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 26px 26px 24px; background: var(--paper);
+}
+.worry h3 {
+  font-size: 17.5px; font-weight: 700; line-height: 1.5;
+  padding-left: 32px; position: relative;
+}
+.worry h3::before {
+  content: "Q"; position: absolute; left: 0; top: -1px;
+  font-size: 16px; font-weight: 800; color: var(--accent);
+}
+.worry p {
+  margin-top: 12px; padding-left: 32px; position: relative;
+  font-size: 15.5px; line-height: 1.75; color: var(--ink-soft);
+}
+.worry p::before {
+  content: "A"; position: absolute; left: 0; top: 0;
+  font-size: 16px; font-weight: 800; color: var(--ink);
+}
+
 /* ---------- 소개 ---------- */
 .about-inner { display: grid; gap: 32px; grid-template-columns: 1fr; }
 .about-inner h2 { font-size: clamp(26px, 4vw, 38px); }
