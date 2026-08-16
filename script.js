@@ -35,6 +35,7 @@
   }
   $("[data-hero-text]").textContent  = SITE.heroText;
   $("[data-about-text]").textContent = SITE.aboutText;
+  if (SITE.aboutTitle) $("[data-about-title]").textContent = SITE.aboutTitle;
   $("#year").textContent = new Date().getFullYear();
 
   /* ---------- 2. 폰에서 쓰는 상단 메뉴 ---------- */
