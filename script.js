@@ -206,6 +206,12 @@
   });
   if (!optBox.children.length) optBox.closest(".price-options").hidden = true;
 
+  var footEl = $("[data-price-footnote]");
+  if (footEl) {
+    footEl.textContent = SITE.priceFootnote || "";
+    footEl.hidden = !SITE.priceFootnote;
+  }
+
   /* ---------- 7. 포트폴리오 ----------
      config.js 의 PORTFOLIO 에 적은 순서 그대로, 전부 화면에 나옵니다.
      아래로 계속 추가하면 화면에서도 아래로 계속 이어집니다. */
