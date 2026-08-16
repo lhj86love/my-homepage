@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="NORDIC 로고 예시 이미지">
-<rect width="600" height="600" fill="#2b3a55"/>
-<path d="M300 190 L362 300 L238 300 Z" fill="none" stroke="#e8e2d6" stroke-width="10" stroke-linejoin="round"/><path d="M300 240 L330 300 L270 300 Z" fill="#e8e2d6"/>
-<text x="300" y="392" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="38" letter-spacing="10" fill="#e8e2d6">NORDIC</text>
-<text x="300" y="426" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="5" fill="#e8e2d6" opacity="0.6">SAMPLE IMAGE</text>
-</svg>
